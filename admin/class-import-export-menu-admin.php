@@ -100,4 +100,48 @@ class Import_Export_Menu_Admin {
 
 	}
 
+	/**
+	 * Adds a new top-level menu page to the WordPress admin area.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	function import_export_menu_add_page() {
+		/**
+		 * Add a top-level menu page.
+		 *
+		 * @param string $page_title The text to be displayed in the title tags of the page when the menu is selected.
+		 * @param string $menu_title The text to be used for the menu.
+		 * @param string $capability The capability required for this menu to be displayed to the user.
+		 * @param string $menu_slug The slug name to refer to this menu by (should be unique for this menu).
+		 * @param callable $callback The function to be called to output the content for this page.
+		 * @param string $icon_url The URL to the icon to be used for this menu.
+		 * @param int $position The position in the menu order this menu should appear.
+		 *
+		 * @return void
+		 */
+		add_menu_page(
+			__( 'Import Export', 'import-export-menu' ), // $page_title
+			__( 'Import Export', 'import-export-menu' ), // $menu_title
+			'manage_options',                       	 // $capability
+			'import-export-menu',                        // $menu_slug
+			'import_export_menu_display_page',      	 // $callback
+			'dashicons-admin-generic',              	 // $icon_url
+			30                                     		 // $position
+		);
+	}
+
+	/**
+	 * Callback function for Export Import.
+	 *
+	 * This function is responsible for rendering the content of the "Export Import" admin page.
+	 *
+	 * @return void
+	 */
+	public function import_export_menu_display_page() {
+		// Include the partial file that contains the HTML content.
+		include plugin_dir_path( __FILE__ ) . 'admin/partials/export-import-menu.php';
+	}
+
 }
