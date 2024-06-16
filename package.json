@@ -4,7 +4,8 @@
 	"description": "This plugin allows you to export and import menus in WordPress, making it easier to manage and migrate menu structures between sites.",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
+		"check-updates": "ncu",
+		"update-packages": "ncu -u",
 		"prepare": "husky",
 		"check:php:compatibility:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
 		"check:php:compatibility:wp:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
@@ -19,6 +20,7 @@
 	"devDependencies": {
 		"conventional-commits-parser": "^6.0.0",
 		"husky": "^9.0.11",
-		"lint-staged": "^15.2.7"
+		"lint-staged": "^15.2.7",
+		"npm-check-updates": "^16.14.20"
 	}
 }
