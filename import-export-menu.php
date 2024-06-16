@@ -15,7 +15,7 @@
  * @wordpress-plugin
  * Plugin Name:       Import Expot Menu
  * Plugin URI:        https://yukyhendiawan.com
- * Description:       ----
+ * Description:       This plugin allows you to export and import menus in WordPress, making it easier to manage and migrate menu structures between sites.
  * Version:           1.0.0
  * Author:            Yuky Hendiawan
  * Author URI:        https://yukyhendiawan.com/

@@ -1,16 +1,17 @@
 {
   "name": "import-export-menu",
   "version": "1.0.0",
-  "description": "---",
+  "description": "This plugin allows you to export and import menus in WordPress, making it easier to manage and migrate menu structures between sites.",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "plugin"
-  ],
+	"keywords": [
+		"WordPress",
+		"plugin"
+	],
   "author": "Yuky Hendiawan",
-  "license": "ISC",
+  "license": "GPL-2.0-or-later",
   "devDependencies": {
     "conventional-commits-parser": "^6.0.0"
   }
