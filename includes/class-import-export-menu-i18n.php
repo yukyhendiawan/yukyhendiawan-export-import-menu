@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Define the internationalization functionality
  *
@@ -24,8 +23,7 @@
  * @subpackage Import_Export_Menu/includes
  * @author     Yuky Hendiawan <yukyhendiawan1998@gmail.com>
  */
-class Import_Export_Menu_i18n {
-
+class Import_Export_Menu_I18n {
 
 	/**
 	 * Load the plugin text domain for translation.
@@ -39,9 +37,5 @@ class Import_Export_Menu_i18n {
 			false,
 			dirname( dirname( plugin_basename( __FILE__ ) ) ) . '/languages/'
 		);
-
 	}
-
-
-
 }

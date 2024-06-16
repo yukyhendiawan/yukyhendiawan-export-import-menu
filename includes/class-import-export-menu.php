@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The file that defines the core plugin class
  *
@@ -78,7 +77,6 @@ class Import_Export_Menu {
 		$this->set_locale();
 		$this->define_admin_hooks();
 		$this->define_public_hooks();
-
 	}
 
 	/**
@@ -87,7 +85,7 @@ class Import_Export_Menu {
 	 * Include the following files that make up the plugin:
 	 *
 	 * - Import_Export_Menu_Loader. Orchestrates the hooks of the plugin.
-	 * - Import_Export_Menu_i18n. Defines internationalization functionality.
+	 * - Import_Export_Menu_I18n. Defines internationalization functionality.
 	 * - Import_Export_Menu_Admin. Defines all hooks for the admin area.
 	 * - Import_Export_Menu_Public. Defines all hooks for the public side of the site.
 	 *
@@ -103,33 +101,32 @@ class Import_Export_Menu {
 		 * The class responsible for orchestrating the actions and filters of the
 		 * core plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-import-export-menu-loader.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-import-export-menu-loader.php';
 
 		/**
 		 * The class responsible for defining internationalization functionality
 		 * of the plugin.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'includes/class-import-export-menu-i18n.php';
+		require_once plugin_dir_path( __DIR__ ) . 'includes/class-import-export-menu-i18n.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the admin area.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'admin/class-import-export-menu-admin.php';
+		require_once plugin_dir_path( __DIR__ ) . 'admin/class-import-export-menu-admin.php';
 
 		/**
 		 * The class responsible for defining all actions that occur in the public-facing
 		 * side of the site.
 		 */
-		require_once plugin_dir_path( dirname( __FILE__ ) ) . 'public/class-import-export-menu-public.php';
+		require_once plugin_dir_path( __DIR__ ) . 'public/class-import-export-menu-public.php';
 
 		$this->loader = new Import_Export_Menu_Loader();
-
 	}
 
 	/**
 	 * Define the locale for this plugin for internationalization.
 	 *
-	 * Uses the Import_Export_Menu_i18n class in order to set the domain and to register the hook
+	 * Uses the Import_Export_Menu_I18n class in order to set the domain and to register the hook
 	 * with WordPress.
 	 *
 	 * @since    1.0.0
@@ -137,10 +134,9 @@ class Import_Export_Menu {
 	 */
 	private function set_locale() {
 
-		$plugin_i18n = new Import_Export_Menu_i18n();
+		$plugin_i18n = new Import_Export_Menu_I18n();
 
 		$this->loader->add_action( 'plugins_loaded', $plugin_i18n, 'load_plugin_textdomain' );
-
 	}
 
 	/**
@@ -157,7 +153,6 @@ class Import_Export_Menu {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'import_export_menu_add_page' );
-
 	}
 
 	/**
@@ -173,7 +168,6 @@ class Import_Export_Menu {
 
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_styles' );
 		$this->loader->add_action( 'wp_enqueue_scripts', $plugin_public, 'enqueue_scripts' );
-
 	}
 
 	/**
@@ -215,5 +209,4 @@ class Import_Export_Menu {
 	public function get_version() {
 		return $this->version;
 	}
-
 }

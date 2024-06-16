@@ -1,5 +1,4 @@
 <?php
-
 /**
  * Renders the admin area view for the plugin.
  *
@@ -11,8 +10,9 @@
  * @package    Import_Export_Menu
  * @subpackage Import_Export_Menu/admin/partials
  */
+
 ?>
 
 <div class="wrap">
-    <h1><?php esc_html_e( 'Export & Import', 'import-export-menu' ); ?></h1>
+	<h1><?php esc_html_e( 'Export & Import', 'import-export-menu' ); ?></h1>
 </div>

@@ -1,5 +1,4 @@
 <?php
-
 /**
  * The plugin bootstrap file
  *
@@ -77,6 +76,5 @@ function run_import_export_menu() {
 
 	$plugin = new Import_Export_Menu();
 	$plugin->run();
-
 }
 run_import_export_menu();
