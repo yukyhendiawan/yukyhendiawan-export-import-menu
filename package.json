@@ -1,18 +1,24 @@
 {
-  "name": "import-export-menu",
-  "version": "1.0.0",
-  "description": "This plugin allows you to export and import menus in WordPress, making it easier to manage and migrate menu structures between sites.",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+	"name": "import-export-menu",
+	"version": "1.0.0",
+	"description": "This plugin allows you to export and import menus in WordPress, making it easier to manage and migrate menu structures between sites.",
+	"main": "index.js",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "husky",
+		"check:php:compatibility:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
+		"check:php:compatibility:wp:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
+		"lint:wpcs": "./vendor/bin/phpcs --standard=phpcs.xml"
+	},
 	"keywords": [
 		"WordPress",
 		"plugin"
 	],
-  "author": "Yuky Hendiawan",
-  "license": "GPL-2.0-or-later",
-  "devDependencies": {
-    "conventional-commits-parser": "^6.0.0"
-  }
+	"author": "Yuky Hendiawan",
+	"license": "GPL-2.0-or-later",
+	"devDependencies": {
+		"conventional-commits-parser": "^6.0.0",
+		"husky": "^9.0.11",
+		"lint-staged": "^15.2.7"
+	}
 }

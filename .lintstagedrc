@@ -1,0 +1,7 @@
+{
+    "*.php": [
+        "npm run check:php:compatibility:56+",
+        "npm run check:php:compatibility:wp:56+",
+        "npm run lint:wpcs"
+    ]
+}
