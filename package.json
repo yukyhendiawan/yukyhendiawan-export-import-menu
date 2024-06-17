@@ -6,10 +6,10 @@
 	"scripts": {
 		"check-updates": "ncu",
 		"update-packages": "ncu -u",
-		"prepare": "husky",
 		"check:php:compatibility:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
 		"check:php:compatibility:wp:56+": "./vendor/bin/phpcs -p . --standard=phpcs.xml --extensions=php --ignore=*/vendor/*,*/node_modules/*",
-		"lint:wpcs": "./vendor/bin/phpcs --standard=phpcs.xml"
+		"lint:wpcs": "./vendor/bin/phpcs --standard=phpcs.xml",
+		"prepare": "husky"
 	},
 	"keywords": [
 		"WordPress",
@@ -18,7 +18,8 @@
 	"author": "Yuky Hendiawan",
 	"license": "GPL-2.0-or-later",
 	"devDependencies": {
-		"conventional-commits-parser": "^6.0.0",
+		"@commitlint/cli": "^19.3.0",
+		"@commitlint/config-conventional": "^19.2.2",
 		"husky": "^9.0.11",
 		"lint-staged": "^15.2.7",
 		"npm-check-updates": "^16.14.20"
