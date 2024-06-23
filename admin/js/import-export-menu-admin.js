@@ -1,32 +1,51 @@
 (function( $ ) {
 	'use strict';
 
-	/**
-	 * All of the code for your admin-facing JavaScript source
-	 * should reside in this file.
-	 *
-	 * Note: It has been assumed you will write jQuery code here, so the
-	 * $ function reference has been prepared for usage within the scope
-	 * of this function.
-	 *
-	 * This enables you to define handlers, for when the DOM is ready:
-	 *
-	 * $(function() {
-	 *
-	 * });
-	 *
-	 * When the window is loaded:
-	 *
-	 * $( window ).load(function() {
-	 *
-	 * });
-	 *
-	 * ...and/or other possibilities.
-	 *
-	 * Ideally, it is not considered best practise to attach more than a
-	 * single DOM-ready or window-load handler for a particular page.
-	 * Although scripts in the WordPress core, Plugins and Themes may be
-	 * practising this, we should strive to set a better example in our own work.
-	 */
+    // Add event listener import.
+    $('.toplevel_page_import-export-menu .wrap button.import').on("click", function() {
+
+        // Perform an AJAX request to the server.
+        $.ajax({
+            url: ajaxObject.ajaxUrl,
+            type: 'POST',
+            data: {
+                action: 'action-get-import',
+				nonce: ajaxObject.nonce
+            },
+            success: function(response) {
+				// console.log(response);
+
+				// Callback when request is successful.
+				if (response.success) {
+					// Convert JSON data to string.
+					var jsonData = JSON.stringify(response.data);
+
+					// Create JSON blob.
+					var blob = new Blob([jsonData], { type: 'application/json' });
+
+					// Create object URL from blob.
+					var url = URL.createObjectURL(blob);
+
+					// Create <a> element to download JSON file.
+					var a = document.createElement('a');
+					a.href = url;
+					a.download = 'import-export-menu.json';
+					document.body.appendChild(a);
+					a.click();
+					document.body.removeChild(a);
+
+					// Clean up object URL.
+					URL.revokeObjectURL(url);
+				} else {
+					console.error('Error:', response.data.message);
+				}			
+            },
+            error: function(error) {
+                // Callback function when an error occurs.
+                console.error('Error:', error); // Log the error message to the console.
+            }
+        });
+
+    });
 
 })( jQuery );

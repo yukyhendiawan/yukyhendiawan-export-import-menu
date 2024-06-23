@@ -153,6 +153,8 @@ class Import_Export_Menu {
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_styles' );
 		$this->loader->add_action( 'admin_enqueue_scripts', $plugin_admin, 'enqueue_scripts' );
 		$this->loader->add_action( 'admin_menu', $plugin_admin, 'import_export_menu_add_page' );
+		$this->loader->add_action( 'wp_ajax_action-get-import', $plugin_admin, 'handle_get_import' );
+		$this->loader->add_action( 'wp_ajax_nopriv_action-get-import', $plugin_admin, 'handle_get_import' );
 	}
 
 	/**

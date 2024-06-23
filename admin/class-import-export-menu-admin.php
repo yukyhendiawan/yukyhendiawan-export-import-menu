@@ -94,6 +94,15 @@ class Import_Export_Menu_Admin {
 		}
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/import-export-menu-admin.js', array( 'jquery' ), $this->version, true );
+
+		wp_localize_script(
+			$this->plugin_name,
+			'ajaxObject',
+			array(
+				'ajaxUrl' => admin_url( 'admin-ajax.php' ),
+				'nonce'   => wp_create_nonce( 'ajax-nonce' ),
+			)
+		);
 	}
 
 	/**
@@ -138,5 +147,65 @@ class Import_Export_Menu_Admin {
 	public function import_export_menu_display_page() {
 		// Include the partial file that contains the HTML content.
 		include plugin_dir_path( __FILE__ ) . 'partials/export-import-menu.php';
+	}
+
+	/**
+	 * Handles the AJAX request for getting the menu items.
+	 *
+	 * This function is responsible for handling the AJAX request to get the menu items.
+	 * It verifies the nonce, retrieves the menu items, and sends them back to the client in JSON format.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @return void
+	 */
+	public function handle_get_import() {
+
+		// Verify nonce.
+		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'ajax-nonce' ) ) {
+			// If nonce verification fails, send JSON error response and terminate.
+			wp_send_json_error(
+				array(
+					'message' => esc_html__( 'Invalid nonce handle_get_import!', 'import-export-menu' ),
+					'status'  => esc_html__( 'Error!', 'import-export-menu' ),
+				)
+			);
+
+			// End processing.
+			wp_die();
+		}
+
+		// Get menu list from WordPress.
+		$menus     = wp_get_nav_menus();
+		$menu_data = array();
+
+		// Loop through each menu to fetch its items.
+		foreach ( $menus as $menu ) {
+			$menu_items = wp_get_nav_menu_items( $menu->term_id );
+			$items      = array();
+
+			// Loop through menu items to extract necessary data.
+			foreach ( $menu_items as $item ) {
+				$items[] = array(
+					'ID'         => $item->ID,
+					'title'      => $item->title,
+					'url'        => $item->url,
+					'menu_order' => $item->menu_order,
+				);
+			}
+
+			// Prepare menu data including menu name, ID, and items.
+			$menu_data[] = array(
+				'menu_name' => $menu->name,
+				'menu_id'   => $menu->term_id,
+				'items'     => $items,
+			);
+		}
+
+		// Convert menu data to JSON format and send to client.
+		wp_send_json_success( $menu_data );
+
+		// End processing.
+		wp_die();
 	}
 }
