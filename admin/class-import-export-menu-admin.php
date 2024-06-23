@@ -59,18 +59,6 @@ class Import_Export_Menu_Admin {
 	 */
 	public function enqueue_styles() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Import_Export_Menu_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Import_Export_Menu_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/import-export-menu-admin.css', array(), $this->version, 'all' );
 	}
 
@@ -81,19 +69,7 @@ class Import_Export_Menu_Admin {
 	 */
 	public function enqueue_scripts() {
 
-		/**
-		 * This function is provided for demonstration purposes only.
-		 *
-		 * An instance of this class should be passed to the run() function
-		 * defined in Import_Export_Menu_Loader as all of the hooks are defined
-		 * in that particular class.
-		 *
-		 * The Import_Export_Menu_Loader will then create the relationship
-		 * between the defined hooks and the functions defined in this
-		 * class.
-		 */
-
-		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/import-export-menu-admin.js', array( 'jquery' ), $this->version, false );
+		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/import-export-menu-admin.js', array( 'jquery' ), $this->version, true );
 	}
 
 	/**
@@ -118,13 +94,13 @@ class Import_Export_Menu_Admin {
 		 * @return void
 		 */
 		add_menu_page(
-			__( 'Import Export', 'import-export-menu' ), // $page_title
-			__( 'Import Export', 'import-export-menu' ), // $menu_title
-			'manage_options',                            // $capability
-			'import-export-menu',                        // $menu_slug
-			'import_export_menu_display_page',           // $callback
-			'dashicons-admin-generic',                   // $icon_url
-			30                                           // $position
+			__( 'Import Export', 'import-export-menu' ),       // $page_title
+			__( 'Import Export', 'import-export-menu' ),       // $menu_title
+			'manage_options',                                  // $capability
+			'import-export-menu',                              // $menu_slug
+			array( $this, 'import_export_menu_display_page' ), // $callback
+			'dashicons-admin-generic',                         // $icon_url
+			30                                                 // $position
 		);
 	}
 
@@ -137,6 +113,6 @@ class Import_Export_Menu_Admin {
 	 */
 	public function import_export_menu_display_page() {
 		// Include the partial file that contains the HTML content.
-		include plugin_dir_path( __FILE__ ) . 'admin/partials/export-import-menu.php';
+		include plugin_dir_path( __FILE__ ) . 'partials/export-import-menu.php';
 	}
 }
