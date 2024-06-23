@@ -1,4 +1,22 @@
-/**
- * All of the CSS for your admin-specific functionality should be
- * included in this file.
- */
+:root {
+    --import-export-menu-bg: #026bc0;
+    --import-export-menu-light-color: #fdfdfd;
+}
+
+.wrap h1 {
+    margin-bottom: 25px;
+}
+
+.wrap button {
+    padding: 20px;
+    padding: 10px;
+    background: var(--import-export-menu-bg);
+    color: var(--import-export-menu-light-color);
+    border: none;
+    cursor: pointer;
+}
+
+.wrap .divider {
+    display: block;
+    margin: 50px 0;
+}

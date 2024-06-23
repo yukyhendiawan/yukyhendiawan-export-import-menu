@@ -55,9 +55,21 @@ class Import_Export_Menu_Admin {
 	/**
 	 * Register the stylesheets for the admin area.
 	 *
-	 * @since    1.0.0
+	 * This function enqueues the CSS file for the admin area of the plugin.
+	 * The CSS file is only enqueued when the 'toplevel_page_import-export-menu' admin page is loaded.
+	 *
+	 * @since 1.0.0
+	 *
+	 * @param string $hook The current admin page hook.
+	 *
+	 * @return void
 	 */
-	public function enqueue_styles() {
+	public function enqueue_styles( $hook ) {
+
+		// If not, exit the function to prevent unnecessary loading of the CSS stylesheet.
+		if ( 'toplevel_page_import-export-menu' !== $hook ) {
+			return;
+		}
 
 		wp_enqueue_style( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'css/import-export-menu-admin.css', array(), $this->version, 'all' );
 	}
@@ -65,9 +77,21 @@ class Import_Export_Menu_Admin {
 	/**
 	 * Register the JavaScript for the admin area.
 	 *
+	 * This function enqueues the JavaScript file for the admin area of the plugin.
+	 * The JavaScript file is only enqueued when the 'toplevel_page_import-export-menu' admin page is loaded.
+	 *
 	 * @since    1.0.0
+	 *
+	 * @param string $hook The current admin page hook.
+	 *
+	 * @return void
 	 */
-	public function enqueue_scripts() {
+	public function enqueue_scripts( $hook ) {
+
+		// If not, exit the function to prevent unnecessary loading of the CSS stylesheet.
+		if ( 'toplevel_page_import-export-menu' !== $hook ) {
+			return;
+		}
 
 		wp_enqueue_script( $this->plugin_name, plugin_dir_url( __FILE__ ) . 'js/import-export-menu-admin.js', array( 'jquery' ), $this->version, true );
 	}
