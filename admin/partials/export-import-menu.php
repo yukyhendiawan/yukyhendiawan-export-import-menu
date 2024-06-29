@@ -14,7 +14,7 @@
 ?>
 
 <div class="wrap">
-	<h1><?php esc_html_e( 'Export & Import', 'import-export-menu' ); ?></h1>
+	<h1><?php esc_html_e( 'Export & Import Menu', 'import-export-menu' ); ?></h1>
 	<button type="button" class="import">
 		<?php esc_html_e( 'Export Menu', 'import-export-menu' ); ?>
 	</button>

@@ -127,8 +127,8 @@ class Import_Export_Menu_Admin {
 		 * @return void
 		 */
 		add_menu_page(
-			__( 'Import Export', 'import-export-menu' ),       // $page_title
-			__( 'Import Export', 'import-export-menu' ),       // $menu_title
+			__( 'Import Export Menu', 'import-export-menu' ),       // $page_title
+			__( 'Import Export Menu', 'import-export-menu' ),       // $menu_title
 			'manage_options',                                  // $capability
 			'import-export-menu',                              // $menu_slug
 			array( $this, 'import_export_menu_display_page' ), // $callback
@@ -202,8 +202,14 @@ class Import_Export_Menu_Admin {
 			);
 		}
 
+		// Create the response array with plugin name and menu data.
+		$response = array(
+			'plugin_name' => 'Import Export Menu',
+			'menus'       => $menu_data,
+		);
+
 		// Convert menu data to JSON format and send to client.
-		wp_send_json_success( $menu_data );
+		wp_send_json_success( $response );
 
 		// End processing.
 		wp_die();
