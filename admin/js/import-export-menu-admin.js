@@ -1,15 +1,15 @@
 (function( $ ) {
 	'use strict';
 
-    // Add event listener import.
-    $('.toplevel_page_import-export-menu .wrap button.import').on("click", function() {
+    // Add event listener Export.
+    $('.toplevel_page_import-export-menu .wrap button.export').on("click", function() {
 
         // Perform an AJAX request to the server.
         $.ajax({
             url: ajaxObject.ajaxUrl,
             type: 'POST',
             data: {
-                action: 'action-get-import',
+                action: 'action-get-export',
 				nonce: ajaxObject.nonce
             },
             success: function(response) {

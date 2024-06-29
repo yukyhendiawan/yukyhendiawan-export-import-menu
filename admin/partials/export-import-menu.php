@@ -15,7 +15,7 @@
 
 <div class="wrap">
 	<h1><?php esc_html_e( 'Export & Import Menu', 'import-export-menu' ); ?></h1>
-	<button type="button" class="import">
+	<button type="button" class="export">
 		<?php esc_html_e( 'Export Menu', 'import-export-menu' ); ?>
 	</button>
 
@@ -29,7 +29,7 @@
 			</label>
 			<input type="file" id="upload" name="import" size="25">
 		</p>
-		<button type="submit" class="export">
+		<button type="submit" class="import">
 			<?php esc_html_e( 'Upload file and import', 'import-export-menu' ); ?>
 		</button>
 	</form>

@@ -159,14 +159,14 @@ class Import_Export_Menu_Admin {
 	 *
 	 * @return void
 	 */
-	public function handle_get_import() {
+	public function handle_get_export() {
 
 		// Verify nonce.
 		if ( ! isset( $_POST['nonce'] ) || ! wp_verify_nonce( sanitize_text_field( wp_unslash( $_POST['nonce'] ) ), 'ajax-nonce' ) ) {
 			// If nonce verification fails, send JSON error response and terminate.
 			wp_send_json_error(
 				array(
-					'message' => esc_html__( 'Invalid nonce handle_get_import!', 'import-export-menu' ),
+					'message' => esc_html__( 'Invalid nonce handle_get_export!', 'import-export-menu' ),
 					'status'  => esc_html__( 'Error!', 'import-export-menu' ),
 				)
 			);
